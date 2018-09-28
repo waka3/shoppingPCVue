@@ -18,6 +18,7 @@
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
+      <p>this is change place</p>
     </div>
     <div class="app-footer tac mt30">
       <p>© 2016 fishenal MIT</p>
@@ -40,7 +41,7 @@ export default {
   ol, ul {list-style: none;}
   li > ul {margin: 0;}
   blockquote, q {quotes: none;}
-  blockquote:before, blockquote:after, q:before, q:after {content: '';content: none;}
+  blockquote:before, blockquote:after, q:before, q:after {content: '';}
   table {border-collapse: collapse;border-spacing: 0;}
   textarea { resize:none; } /*防止拖动*/
   img {border:0; vertical-align:middle; }  /*  去掉图片低测默认的3像素空白缝隙，或者用display：block也可以*/
