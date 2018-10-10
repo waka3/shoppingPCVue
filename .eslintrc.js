@@ -32,6 +32,6 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		// 句尾必须使用分号
-		'semi': ['off', 'always'] // 强制有分号，没有就报错
+		// 'semi': ['off', 'always'] // 强制有分号，没有就报错
   }
 }

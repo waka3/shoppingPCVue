@@ -22,29 +22,29 @@
           <div :class="['index-breadList-' + item.id]">
             <h3>{{item.title}}</h3>
             <p>{{item.description}}</p>
-            <a :href="item.toKey" class="p10">立刻购买</a>
+            <a :href="item.toKey" class="aBtn p10">立刻购买</a>
           </div>
           <!--<router-link :to=""></router-link>-->
         </div>
       </div>
     </div>
+    <div class="clear"></div>
   </div>
 </template>
 
 <script>
+// import axios from 'axios'
 import slideShow from '../components/slideShow'
 
 export default {
   components: { slideShow },
-  created () {
-    axios.get('/user?ID=12345')
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  },
+  // created () {
+  //   axios.get('api/getNewsList').then((res) => {
+  //     console.log(res)
+  //   }, (err) => {
+  //     console.log(err);
+  //   });
+  // },
   data () {
     return {
       productList: [{
@@ -189,7 +189,7 @@ export default {
     width: 100%;
       &-inner {
       display: inline-block;
-      width: 47%;
+      width: 49%;
       padding: 1%;
       background: #fff;
       &:nth-of-type(even){
@@ -219,13 +219,6 @@ export default {
     p{
       height: 24px;
       line-height: 24px;
-    }
-    a{
-      width: 150px;
-      height: 44px;
-      line-height: 44px;
-      color: #fff;
-      background: #4fc08d;
     }
   }
 </style>

@@ -6,11 +6,14 @@
           <img src="../assets/logo.png" alt="">
         </a>
         <ul class="fr app-header-nav">
-          <li>登录</li>
-          <li class="pl10 pr10">|</li>
-          <li>注册</li>
-          <li class="pl10 pr10">|</li>
-          <li>关于</li>
+          <li  v-if="isLogin">{{ username }}</li>
+          <li  v-if="isLogin" class="pl10 pr10">|</li>
+          <li  v-if="isLogin" @click="Quit">退出</li>
+          <li  v-if="!isLogin" @click="loginClick">登录</li>
+          <li  v-if="!isLogin" class="pl10 pr10">|</li>
+          <li  v-if="!isLogin" @click="regClick">注册</li>
+          <li  class="pl10 pr10">|</li>
+          <li @click="aboutClick">关于</li>
         </ul>
       </div>
     </div>
@@ -18,21 +21,71 @@
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
-      <p>this is change place</p>
     </div>
     <div class="app-footer tac mt30">
       <p>© 2016 fishenal MIT</p>
     </div>
+    <MyDialog :is-show="isShowLogin" @on-close="closeDialog('isShowLogin')">
+      <logForm @isLogin="onSuccess"></logForm>
+    </MyDialog>
+    <MyDialog :is-show="isShowReg" @on-close="closeDialog('isShowReg')">
+      <regForm></regForm>
+    </MyDialog>
+    <MyDialog :is-show="isShowAbout" @on-close="closeDialog('isShowAbout')">
+      <p>本报告在调研数据的基础上，采用定性与定量相结合的方式深入分析了专车市场发展的驱动因素与阻碍因素、专车市场背后的产业格局、专车企业的竞争格局、用户对专车市场的依赖程度、专车对其他交通工具运力的补充效应等，通过这五个章节的研究反映专车市场的发展态势和面临的问题。报告力求客观、深入、准确地反映中国专车市场发展情况，为政府、企事业单位和社会各界提供决策依据。 </p>
+    </MyDialog>
   </div>
 </template>
 
 <script>
+import Dialog from './dialog'
+import LogForm from './logForm'
+import RegForm from './regForm'
+
 export default {
-  name: 'layout'
+  name: 'layout',
+  components: {
+    MyDialog: Dialog,
+    LogForm: LogForm,
+    RegForm: RegForm
+  },
+  data () {
+    return {
+      isShowLogin: false,
+      isShowReg: false,
+      isShowAbout: false,
+      isLogin: false,
+      username: ''
+    }
+  },
+  methods: {
+    loginClick () {
+      this.isShowLogin = true
+    },
+    regClick () {
+      this.isShowReg = true
+    },
+    aboutClick () {
+      this.isShowAbout = true
+    },
+    closeDialog (param) {
+      this[param] = false
+    },
+    onSuccess (data) {
+      this.closeDialog('isShowLogin')
+      this.isLogin = true
+      this.username = data.username
+    },
+    Quit () {
+      this.isLogin = false
+      this.username = ''
+    }
+  }
 }
 </script>
 
 <style lang="less">
+  @import "~w3-css";
   body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {margin: 0;padding: 0;}
   body, button, input, select, textarea {font:12px"\5B8B\4F53",sans-serif;}
   /* HTML5 display-role reset for older browsers */
@@ -126,6 +179,7 @@ export default {
   .mt20{margin-top: 20px;}
   .mt25{margin-top: 25px;}
   .mt30{margin-top: 30px;}
+  /*内边距*/
   .p05{padding: 5px;}
   .p10{padding: 10px;}
   .p15{padding: 15px;}
@@ -194,5 +248,17 @@ export default {
     background:#f3f2f2;
     text-align: center;
     clear: both;
+  }
+  //按钮样式
+  .aBtn{
+    width: 150px;
+    height: 44px;
+    line-height: 44px;
+    color: #fff;
+    background: #4fc08d;
+  }
+  .v-icon{
+    width: 20px;
+    height: 20px;
   }
 </style>

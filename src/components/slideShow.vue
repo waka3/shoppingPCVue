@@ -42,31 +42,31 @@ export default {
   },
   methods: {
     goto (temp) {
-      this.isShow = !this.isShow;
-      this.nowIndex = temp;
+      this.isShow = !this.isShow
+      this.nowIndex = temp
     },
     prev (temp) {
       if (temp === 0) {
-        this.nowIndex = this.slides.length - 1;
+        this.nowIndex = this.slides.length - 1
       } else {
-        this.nowIndex--;
+        this.nowIndex--
       }
     },
     next (temp) {
       if (temp === this.slides.length - 1) {
-        this.nowIndex = 0;
+        this.nowIndex = 0
       } else {
-        this.nowIndex++;
+        this.nowIndex++
       }
     },
     runInv () {
-      this.show = !this.show;
+      this.show = !this.show
       this.invId = setInterval(() => {
-        this.next(this.nowIndex);
-      }, this.inv);
+        this.next(this.nowIndex)
+      }, this.inv)
     },
     clearInv () {
-      clearInterval(this.invId);
+      clearInterval(this.invId)
     }
   },
   mounted () {

@@ -10,6 +10,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+// 配置后台数据模拟第一步
+const express = require('express')
+const app = express()   //创建express应用程序
+var appData = require('../db.json')//加载本地数据文件
+var getNewsList = appData.getNewsList//获取对应的本地数据
+var user = appData.login//获取对应的本地数据
+var apiRoutes = express.Router()  // 获取一个 express 的路由实例
+app.use('/api', apiRoutes)
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -42,6 +51,19 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    // 配置后台数据模拟第二步
+    before(app) {
+      app.get('/api/getNewsList', (req, res) => {
+        res.json({
+          data: getNewsList
+        })//接口返回json数据，上面配置的数据seller就赋值给data请求后调用
+      }),
+      app.get('/api/user', (req, res) => {
+        res.json({
+          data: user
+        })
+      })
     }
   },
   plugins: [
