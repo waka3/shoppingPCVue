@@ -7,6 +7,11 @@ import VueRouter from 'vue-router'
 import Axios from 'axios'
 import Feather from 'vue-icon'
 import IndexPage from './pages/index'
+import DetailPage from './pages/details'
+import forecast from './pages/details/forecast'
+import publish from './pages/details/publish'
+import count from './pages/details/count'
+import analysis from './pages/details/analysis'
 
 Vue.use(VueRouter)
 Vue.use(Feather, {
@@ -29,6 +34,24 @@ let router = new VueRouter({
     {
       path: '/',
       component: IndexPage
+    }, {
+      path: '/detail',
+      component: DetailPage,
+      children: [
+        {
+          path: 'publish',
+          component: publish
+        }, {
+          path: 'forecast',
+          component: forecast
+        }, {
+          path: 'count',
+          component: count
+        }, {
+          path: 'analysis',
+          component: analysis
+        }
+      ]
     }
   ]
 })

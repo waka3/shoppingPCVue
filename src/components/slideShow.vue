@@ -1,14 +1,14 @@
 <template>
   <div class="slide ml10" @mouseover="clearInv" @mouseout="runInv">
     <div class="slide-ctn">
-      <a :href="slides[nowIndex].src">
+      <router-link :to="{path: slides[nowIndex].href}">
         <transition class="slide-trans" v-if="isShow" >
           <img :src="slides[nowIndex].src">
         </transition>
         <transition class="slide-trans-old" v-if="!isShow">
           <img :src="slides[nowIndex].src">
         </transition>
-      </a>
+      </router-link>
     </div>
     <h2>{{ slides[nowIndex].title }}</h2>
     <ul class="slide-index pt05 pb05 tar">

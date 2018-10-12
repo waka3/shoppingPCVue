@@ -1,8 +1,8 @@
 <template>
-  <div class="dialog" v-if="isShow">
+  <div class="dialog w3-row" v-if="isShow">
     <div class="dialog-cover" @click="closeMySelf"></div>
     <transition name="drop">
-      <div class="dialog-content p10">
+      <div class="dialog-content p10 w3-col l5">
         <p class="dialog-close" @click="closeMySelf">X</p>
         <slot>empty</slot>
       </div>
@@ -59,7 +59,6 @@ export default {
       top: 20%;
       left: 50%;
       transform: translateX(-50%);
-      width: 30%;
       background: white;
       border: 2px solid #000;
     }

@@ -15,7 +15,8 @@ const express = require('express')
 const app = express()   //创建express应用程序
 var appData = require('../db.json')//加载本地数据文件
 var getNewsList = appData.getNewsList//获取对应的本地数据
-var user = appData.login//获取对应的本地数据
+var user = appData.login
+var getPrice = appData.getPrice
 var apiRoutes = express.Router()  // 获取一个 express 的路由实例
 app.use('/api', apiRoutes)
 
@@ -62,6 +63,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       app.get('/api/user', (req, res) => {
         res.json({
           data: user
+        })
+      }),
+      app.get('/api/getPrice', (req, res) => {
+        res.json({
+          data: getPrice
         })
       })
     }

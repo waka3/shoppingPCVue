@@ -36,7 +36,7 @@ export default {
   methods: {
     confirm () {
       if (this.userModel && this.passwordModel && this.passwordModel.length >= 6) {
-        Axios.get('api/user').then((res) => {
+        Axios.get('/api/user').then((res) => {
           if (res) {
             var data = res.data.data
             if (data.username === this.userModel && data.userId.toString() === this.passwordModel) {

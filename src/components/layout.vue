@@ -2,22 +2,23 @@
   <div class="layout">
     <div class="app-header">
       <div class="app-header-inner">
-        <a href="">
+        <router-link :to="{path: '/'}">
           <img src="../assets/logo.png" alt="">
-        </a>
+        </router-link>
+        <!--router-link路由跳转比a链接页面跳转渲染快-->
         <ul class="fr app-header-nav">
-          <li  v-if="isLogin">{{ username }}</li>
-          <li  v-if="isLogin" class="pl10 pr10">|</li>
-          <li  v-if="isLogin" @click="Quit">退出</li>
-          <li  v-if="!isLogin" @click="loginClick">登录</li>
-          <li  v-if="!isLogin" class="pl10 pr10">|</li>
-          <li  v-if="!isLogin" @click="regClick">注册</li>
-          <li  class="pl10 pr10">|</li>
+          <li v-if="isLogin">{{ username }}</li>
+          <li v-if="isLogin" class="pl10 pr10">|</li>
+          <li v-if="isLogin" @click="Quit">退出</li>
+          <li v-if="!isLogin" @click="loginClick">登录</li>
+          <li v-if="!isLogin" class="pl10 pr10">|</li>
+          <li v-if="!isLogin" @click="regClick">注册</li>
+          <li class="pl10 pr10">|</li>
           <li @click="aboutClick">关于</li>
         </ul>
       </div>
     </div>
-    <div class="app-content">
+    <div class="app-content pt20">
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
@@ -38,7 +39,7 @@
 </template>
 
 <script>
-import Dialog from './dialog'
+import Dialog from './base/dialog'
 import LogForm from './logForm'
 import RegForm from './regForm'
 
@@ -104,7 +105,6 @@ export default {
   sub{ vertical-align:text-bottom; }
   .clearfix:before,.clearfix:after {content:""; display:table;}
   .clearfix{ *zoom:1;}/*IE/7/6*/
-  h1, h2, h3, h4, h5, h6 {text-decoration:none; font-weight:normal; font-size:100%;}  /*设置h标签的大小，设置跟父亲一样大的字体font-size:100%;*/
   s,i,em{font-style:normal;text-decoration:none;}
   /**
   * 公共类
