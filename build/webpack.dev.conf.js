@@ -9,15 +9,17 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const _ = require('lodash')
 
 // 配置后台数据模拟第一步
 const express = require('express')
 const app = express()   //创建express应用程序
-var appData = require('../db.json')//加载本地数据文件
-var getNewsList = appData.getNewsList//获取对应的本地数据
-var user = appData.login
-var getPrice = appData.getPrice
-var apiRoutes = express.Router()  // 获取一个 express 的路由实例
+let appData = require('../db.json')//加载本地数据文件
+let getNewsList = appData.getNewsList//获取对应的本地数据
+let user = appData.login
+let getPrice = appData.getPrice
+let getOrderList = appData.getOrderList
+let apiRoutes = express.Router()  // 获取一个 express 的路由实例
 app.use('/api', apiRoutes)
 
 const HOST = process.env.HOST
@@ -68,6 +70,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       app.get('/api/getPrice', (req, res) => {
         res.json({
           data: getPrice
+        })
+      }),
+      app.get('/api/getOrderList', (req, res) => {
+        res.json({
+          data: getOrderList
         })
       })
     }

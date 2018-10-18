@@ -26,6 +26,9 @@ export default {
   methods: {
     payResultClose (attr) {
       this[attr] = false
+      if (attr === 'isShowPaySucc') {
+        this.$router.push('/order')
+      }
       this.$emit('colse')
     }
   }
