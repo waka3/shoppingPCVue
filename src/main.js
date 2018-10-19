@@ -34,7 +34,7 @@ Vue.use(Feather, {
   }
 })
 let router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/',
@@ -86,7 +86,7 @@ Vue.prototype.formatDate = (date, type) => {
 }
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  el: '#Layout',
   router,
   template: '<Layout/>',
   components: {Layout}

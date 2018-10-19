@@ -25,7 +25,7 @@
           <div :class="['index-breadList-' + item.id]">
             <h3>{{item.title}}</h3>
             <p>{{item.description}}</p>
-            <a :href="item.toKey" class="aBtn p10">立刻购买</a>
+            <router-link :to="{path: item.toKey}" class="aBtn p10">立刻购买</router-link>
           </div>
           <!--<router-link :to=""></router-link>-->
         </div>
@@ -87,17 +87,17 @@ export default {
           list: [
             {
               name: '数据统计',
-              path: '/detail/count'
+              path: 'detail/count'
             }, {
               name: '数据预测',
-              path: '/detail/forecast'
+              path: 'detail/forecast'
             }, {
               name: '流量分析',
-              path: '/detail/analysis',
+              path: 'detail/analysis',
               hot: true
             }, {
               name: '广告发布',
-              path: '/detail/publish'
+              path: 'detail/publish'
             }
           ]
         }]
@@ -196,16 +196,16 @@ export default {
       }
     }
     &-car{
-      background: url("../assets/images/1.png") no-repeat;
+      background: url('../assets/images/1.png') no-repeat;
     }
     &-earth{
-      background: url("../assets/images/2.png") no-repeat;
+      background: url('../assets/images/2.png') no-repeat;
     }
     &-loud{
-      background: url("../assets/images/3.png") no-repeat;
+      background: url('../assets/images/3.png') no-repeat;
     }
     &-hill{
-      background: url("../assets/images/4.png") no-repeat;
+      background: url('../assets/images/4.png') no-repeat;
     }
     h3{
       height: 34px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout" id="Layout">
     <div class="app-header">
       <div class="app-header-inner">
         <router-link :to="{path: '/'}">
@@ -44,7 +44,7 @@ import LogForm from './logForm'
 import RegForm from './regForm'
 
 export default {
-  name: 'layout',
+  name: 'Layout',
   components: {
     MyDialog: Dialog,
     LogForm: LogForm,
