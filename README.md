@@ -28,6 +28,23 @@
     assetsPublicPath: './',   →  修改打包的路径
  }
  ```
+ ## 路径正确，但是加载出来的内容为空：
+ 检查路由配置问题：
+ ```bash
+ let router = new VueRouter({
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+      component: HomePage
+    }, {
+      path: '/new',
+      component: newPage
+    }
+  ]
+ ```
+ 修改：
+ 注释或删除mode: 'history',打包查看是否可以正常
  
  ## 以背景方式写入的图片路径打包引用路径不对：
  
