@@ -1,21 +1,74 @@
-# shoppingpc
+# npm run build
 
-> this is a vue pc's shopping project 
+## 打包运行页面完全空白，提示：加载资源失败。
 
-## Build Setup
+检查路径是否错误，如果是路径问题，解决：config → index.js 
 
-``` bash
-# install dependencies
-npm install
+```bash
+ build: {
+    // Template for index.html
+    index: path.resolve(__dirname, '../dist/index.html'),
 
-# serve with hot reload at localhost:8080
-npm run dev
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static', 
+    assetsPublicPath: '/', 
+ }
+ ```
+ 修改：
+ 
+ ```bash 
+ build: {
+    // Template for index.html
+    index: path.resolve(__dirname, '../dist/index.html'),
 
-# build for production with minification
-npm run build
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static', 
+    assetsPublicPath: './',   →  修改打包的路径
+ }
+ ```
+ ## 路径正确，但是加载出来的内容为空：
+ 检查路由配置问题：
+ ```bash
+ let router = new VueRouter({
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+      component: HomePage
+    }, {
+      path: '/new',
+      component: newPage
+    }
+  ]
+ ```
+ 修改：
+ 注释或删除mode: 'history',打包查看是否可以正常
+ 
+ ## 以背景方式写入的图片路径打包引用路径不对：
+ 
+build → utils.js 
 
-# build for production and view the bundle analyzer report
-npm run build --report
+```bash
+if (options.extract) {
+  return ExtractTextPlugin.extract({
+    use: loaders,
+    fallback: 'vue-style-loader'
+  })
+} else {
+  return ['vue-style-loader'].concat(loaders)
+}
 ```
+修改：
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+```bash
+if (options.extract) {
+  return ExtractTextPlugin.extract({
+    use: loaders,
+    fallback: 'vue-style-loader',
+    publicPath: '../../'
+  })
+} else {
+  return ['vue-style-loader'].concat(loaders)
+}
